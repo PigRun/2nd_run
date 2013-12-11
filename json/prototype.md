@@ -139,6 +139,19 @@ b.bb的值?
 	var person2 = new Person();
 ```
 
+如果说原型的图是这样的:
 
+![e1.png](https://github.com/PigRun/2nd_run/blob/master/json/img/e1.png?raw=true)
 
-Object.prototype.constructor.prototype === Object.prototype ;//true;
+那么原型链继承的图就是这样子的:
+
+![e2.png](https://github.com/PigRun/2nd_run/blob/master/json/img/e2.png?raw=true)
+
+```
+	Object.prototype.constructor.prototype === Object.prototype ;//true;
+```
+
+Object.prototype是任何js原型链的终点,这个在原型链里寻找属性的过程就叫做委托.而如果直到终点都没有找到这个属性则返回undefined
+
+如果我们需要的是所有实例都一样的属性,且构造函数是我们可以控制的,则使用this工厂模式方法
+而如果我们创建的是不同实例需要不同,或者构造函数不可控(Array的range方法),则应该用prototype来生成.
