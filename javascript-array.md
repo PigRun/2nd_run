@@ -80,6 +80,13 @@ people.forEach(function(value, index){
 });
 ```
 
+## 可乐环节
+> array.sort()是JavaScript自带的排序函数，猜猜下面排序后会成什么？
+```
+var arr = [4, 8, 15, 16, 23, 42];
+console.log(arr.sort());
+```
+
 ## 应用
 
 ### 队列
