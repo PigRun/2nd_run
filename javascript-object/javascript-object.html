@@ -1,0 +1,964 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>JavaScript 对象</title>
+
+</head>
+<body>
+<h1>JavaScript 对象</h1>
+
+<hr />
+
+<ul>
+<li><p>对象</p></li>
+<li><p>对象的创建</p></li>
+<li><p>对象的特性</p></li>
+<li><p>对象属性操作</p></li>
+<li><p>对象判断</p></li>
+<li><p>对象传递</p></li>
+<li><p>对象遍历</p></li>
+<li><p>对象复制</p></li>
+<li><p>对象保护</p></li>
+<li><p>对象相关的一些模式</p></li>
+</ul>
+
+
+<h2>对象</h2>
+
+<h3>定义</h3>
+
+<p>ECMA-262定义：无序属性的集合，其属性可以包含基本值、对象或者函数。</p>
+
+<p>通俗的讲，对象就是一组属性与属性值的集合，这个名值对集合是可变的。</p>
+
+<p><strong>Example</strong></p>
+
+<pre><code>// 创建一个名为 o 的对象
+
+var o = new Object;
+
+
+
+// 写入 o 的 name 属性
+
+o.name = 'userName';
+
+
+
+// 写入 o 的 age 属性
+
+o.age = 22;
+
+
+
+// o 的 sayHi 方法
+
+o.sayHi = function() {
+
+    console.log('Hi!');
+
+}
+
+
+
+// 查看属性
+
+console.log(o.name); // 'userName'
+
+console.log(typeof o.name); // 'string'
+
+
+
+console.log(o.age); // age
+
+console.log(typeof o.age); // 'number'
+
+
+
+o.sayHi(); // 'Hi!'
+
+console.log(typeof o.sayHi); // 'function'
+</code></pre>
+
+<hr />
+
+<h2>对象创建</h2>
+
+<p>JavaScript内置的对象有Object, Array, Date, RegExp, Functiion, 基本类型的包装类型, 其他内置对象，诸如Math对象等</p>
+
+<h3>对象字面量方式</h3>
+
+<p>对象字面量就是一组包含在花括号中的名值对.</p>
+
+<pre><code>var _config = {
+
+    name: 'userName'
+
+}
+
+var o = {
+    init: function(){
+        // do something
+        return newObj;
+    }
+}
+</code></pre>
+
+<h3>构造函数模式</h3>
+
+<p>利用特定的构造函数创建指定类型的对象。Object和Array都属于原生的构造函数，也可以使用自定义的构造函数。在构造函数中可以初始化实例对象的一些属性和方法。</p>
+
+<pre><code>function MyObject(name,age,job) {
+
+    this.name = name;
+
+    this.age = age;
+
+    this.job = job;
+
+    this.sayHi = function() {
+
+        console.log('Hi!');
+
+    }
+
+}
+</code></pre>
+
+<p>然后使用 <code>new</code> 操作符调用构造函数来创建对象实例。</p>
+
+<pre><code>var o = new MyObject('name',100,'fe');
+
+// usage
+
+o.name; // 'name'
+
+o.age; // 100
+
+o.sayHi(); // 'Hi!'
+</code></pre>
+
+<p>实际上使用构造函数的方式会经历以下几个步骤：</p>
+
+<ul>
+<li><p>创建一个新的对象</p></li>
+<li><p>将构造函数作用域赋给新建的对象，也就是将新建的这个对象赋给<code>this</code> - <code>this</code>指向这个新建的对象</p></li>
+<li><p>执行构造函数中的代码，比如为新建的对象添加属性和方法</p></li>
+<li><p>最后返回新建的对象，也就是返回 <code>this</code></p></li>
+</ul>
+
+
+<p>那么在创建对象实例的时候，在构造函数内部的 <code>this</code> 实际上就是指向我们创建的对象实例的。</p>
+
+<blockquote><p>给构造函数传递参数时，缺省的形参值为 <code>undefined</code>.</p></blockquote>
+
+<h3>Object.create()</h3>
+
+<p>创建一个拥有指定的原型和可选的多个指定属性的对象实例。</p>
+
+<pre><code>var o;
+
+o = Object.create(Object.prototype, {
+
+    name: {
+
+        value: 'name',
+
+        writable: true
+
+    }
+
+    otherProperty: {
+
+        get: function(){},
+
+        set: function(){},
+
+        configurable: true
+
+    }
+
+});
+</code></pre>
+
+<ul>
+<li><p><code>Object.create()</code> 必须传递一个作为新创建对象原型的对象</p></li>
+<li><p><code>Object.create(null)</code> 创建一个真正的空对象</p></li>
+</ul>
+
+
+<blockquote><p>实际上 <code>var o = {}</code> 并不是一个真正的空对象，因为它有继承自 <code>Object.prototype</code> 的属性和方法，比如 <code>toString()</code>。</p></blockquote>
+
+<ul>
+<li><code>Object.create()</code> 方法给对象示例设置属性时属性值必须是一个对象描述符</li>
+</ul>
+
+
+<hr />
+
+<h2>对象属性和方法</h2>
+
+<h3>内置属性和方法</h3>
+
+<p>每个对象都有自身的内置属性和方法：</p>
+
+<ul>
+<li><p><code>constructor</code> 创建当前对象的函数</p></li>
+<li><p><code>hasOwnProperty(propertyName)</code> 检查当前属性在对象实例中是否存在</p></li>
+<li><p><code>isPrototypeOf(obj)</code> 检查调用这个方法的对象是否传入参数对象的原型</p></li>
+<li><p><code>propertyIsEnumerable(propertyName)</code> 检查给定的属性是否能够用<code>for-in</code>枚举</p></li>
+<li><p><code>toLocaleString()</code> 返回对象字符串标识，与执行环境的地区对应</p></li>
+<li><p><code>toString()</code> 返回对象字符串标识</p></li>
+<li><p><code>valueOf()</code> 返回对象的字符串，数值或者布尔值表示。通常和<code>toString()</code>返回值相同</p></li>
+</ul>
+
+
+<p>ES5中还定义了一些好用的方法:</p>
+
+<pre><code>Object.getOwnPropertyNames()
+
+Object.getPrototypeOf();
+</code></pre>
+
+<h3>对象特性</h3>
+
+<p>ECMAScript5 中为给对象定义了一些只有内部才用的特性，用来描述对象属性的特征。</p>
+
+<blockquote><p>这些特性通常是为了和JavaScript引擎实现相关的，在JavaScript中并不能直接使用这些特性。</p></blockquote>
+
+<p>ES5中两种类型的特性属性：</p>
+
+<p><strong>数据属性</strong>：</p>
+
+<ul>
+<li><p>[[Configurable]] 是否可配置，比如<code>delete</code> 属性后重新定义，修改特性类型，修改属性的其他特性，默认为<code>true</code></p></li>
+<li><p>[[Enumerable]] 是否可用 <code>for-in</code> 枚举 默认为 <code>true</code></p></li>
+<li><p>[[Writable]] 是否可修改属性值 默认为 <code>true</code></p></li>
+<li><p>[[Value]] 对象属性的至 默认为 <code>undefined</code></p></li>
+</ul>
+
+
+<p><strong>访问器属性</strong>:</p>
+
+<p>内置的这些访问器类型的属性都不包含数据值。</p>
+
+<ul>
+<li><p>[[Configurable]] 是否可配置，与数据属性[[Configurable]]类似,默认为 <code>true</code></p></li>
+<li><p>[[Enumerable]] 表示是否可没据属性，默认为 <code>true</code></p></li>
+<li><p>[[Get]] 读取属性调用的函数，默认为 <code>undefined</code></p></li>
+<li><p>[[Set]] 写入属性调用的函数，默认为 <code>undefined</code></p></li>
+</ul>
+
+
+<p>上面这些特性只能通过ES5提供的<code>Object.defineProperty()</code> 才能修改。</p>
+
+<h3>读取对象特性</h3>
+
+<p>ES5中定义了一个 <code>Object.getOwnPropertyDescriptor()</code> 方法用于读取给定对象属性的描述符</p>
+
+<p>参数：指定对象，希望读取属性描述符的指定属性</p>
+
+<p>返回：对象，根据对象属性的特性返回不同的值</p>
+
+<pre><code>var des = Object.getOwnPropertyDescriptor(o, 'name');
+
+name.configurable;
+</code></pre>
+
+<hr />
+
+<h2>对象的属性和方法</h2>
+
+<h3>设置属性</h3>
+
+<p>定义对象的属性有三种方法：</p>
+
+<h4>点表示法</h4>
+
+<pre><code>var o = {};
+
+o.name = 'value';
+</code></pre>
+
+<h4>方括号表示法</h4>
+
+<pre><code>var o = {},
+
+    prop = "age";
+
+o['name'] = 'value';
+
+o[prop] = 22;
+</code></pre>
+
+<h4>Object.defineProperty() &amp;&amp; Object.defineProperties()</h4>
+
+<p>这两个方法是在ES5中定义的</p>
+
+<pre><code>var o = {};
+
+Object.defineProperty(o, 'name', {
+
+    value: 'userName',
+
+    writable: false
+
+});
+</code></pre>
+
+<blockquote><p>参数：对象，属性名，属性描述符</p>
+
+<p>描述符: <code>configurable</code>, <code>enumberable</code>, <code>writable</code>, <code>value</code> 中的一个或者多个</p></blockquote>
+
+<pre><code>Object.defineProperty(o, 'age', {
+
+    get: function(){
+
+        return this._prop;
+
+    }
+
+    set: function(prop) {
+
+        this._prop = prop;
+
+    }
+
+});
+</code></pre>
+
+<p>定义多个属性</p>
+
+<pre><code>Object.defineProperties(o, {
+
+    a: {
+
+        value: 'valA'
+
+    },
+
+    b: {
+
+        value: 'valB'
+
+    }
+
+});
+</code></pre>
+
+<blockquote><p>属性都必须使用属性描述符定义</p></blockquote>
+
+<h3>读取属性</h3>
+
+<h4>点表示法</h4>
+
+<pre><code>o.name;
+</code></pre>
+
+<h4>方括号表示法</h4>
+
+<pre><code>var o = {
+
+    'a-1': 123
+
+};
+
+o['a-1'];
+</code></pre>
+
+<blockquote><p>定义已存在的属性会覆盖原有属性的值， 否则新增属性</p>
+
+<p>读取不存在的属性返回undefined</p></blockquote>
+
+<h3>删除属性</h3>
+
+<p>使用 <code>delete</code>运算符可以删除对象的属性</p>
+
+<pre><code>delete o.name;
+</code></pre>
+
+<blockquote><p><code>delete</code> 不会删除原型中的属性</p>
+
+<p>ES5 中 <code>configurable</code> 设置为 <code>false</code> 的属性不能使用 <code>delete</code> 删除并且会导致错误</p></blockquote>
+
+<hr />
+
+<h2>对象判断</h2>
+
+<h3>类型判断</h3>
+
+<p><strong>tyepof 运算符</strong></p>
+
+<p>返回一个字符串，标识给定的运算数是什么类型</p>
+
+<pre><code>typeof o; //'object'
+</code></pre>
+
+<p><strong>instanceof 运算符</strong></p>
+
+<pre><code>{} instanceof Object;
+</code></pre>
+
+<p>如果左侧是右侧的实例返回 <code>true</code></p>
+
+<p><strong>constructor 属性</strong></p>
+
+<p>每个对象都有，引用初始化对象实例的构造函数</p>
+
+<pre><code>o.constructor === Object;
+</code></pre>
+
+<h3>存在性判断</h3>
+
+<p>方法多种多样</p>
+
+<pre><code>var o;
+
+if(!o) {
+
+    o = {};
+
+}
+
+
+
+if(!obj) {
+
+    var obj = {};
+
+}
+
+
+
+if(o === undefined) {
+
+    o = {};
+
+}
+</code></pre>
+
+<h3>相等性判断</h3>
+
+<hr />
+
+<h2>对象传递</h2>
+
+<p>对象是按引用传递的。</p>
+
+<pre><code>var o = { name: 123 }
+
+var o2 = o;
+
+o2.name === 123;
+
+o2.age = 100;
+
+o2.age === o.age;
+
+
+
+var a = {},
+
+    b = {};
+
+
+
+a !== b;
+
+
+
+var a, b;
+
+a = b = { name: 123 }
+
+a === b;
+
+a.name === b.name;
+</code></pre>
+
+<hr />
+
+<h2>对象遍历</h2>
+
+<p>for-in语句可用来编辑对象中的所有属性，可能会包括原型中的属性</p>
+
+<pre><code>for(var key in o) {
+
+    console.log(key);
+
+}
+</code></pre>
+
+<p>如果需要过滤来自原型的属性，可以使用<code>hasOwnProperty()</code>方法来进行过滤</p>
+
+<p>ES5中定义了一个 <code>Object.keys()</code> 方法来枚举对象自身的属性，返回一个属性名组成的数组。</p>
+
+<pre><code>Object.keys(o);
+</code></pre>
+
+<blockquote><p>对象属性顺序是不确定的，如果依赖顺序就需要进行额外的操作。比如将属性存储在数组中使用<code>for</code>循环遍历。</p></blockquote>
+
+<hr />
+
+<h2>对象复制</h2>
+
+<h3>浅复制</h3>
+
+<pre><code>/*
+
+ * 浅复制，子类实例引用类型属性的修改会影响父类对应的属性
+
+ */
+
+function clone(parent, child) {
+
+    var i;
+
+
+
+    child = child || {};
+
+
+
+    for(i in parent){
+
+        if(parent.hasOwnProperty(i)){
+
+            child[i] = parent[i];
+
+        }
+
+    }
+
+
+
+    return child;
+
+}
+</code></pre>
+
+<h3>深复制</h3>
+
+<pre><code>/*
+
+ * 深复制
+
+ */
+
+function deepClone(parent, child) {
+
+    var i,
+
+        toStr = Object.prototype.toString,
+
+        arrStr = ['object Array'];
+
+
+
+    child = child || {};
+
+
+
+    for(i in parent) {
+
+        if(parent.hasOwnProperty(i)) {
+
+            if(typeof parent[i] === 'object') {
+
+                child[i] = (toStr.call(parent[i]) === arrStr) ? [] : {};
+
+                deepClone(parent[i], child[i]);
+
+            } else {
+
+                child[i] = parent[i];
+
+            }
+
+        }
+
+    }
+
+
+
+    return child;
+
+};
+
+
+
+// or
+
+var str = JSON.stringify(o);
+
+var newObj = JSON.parse(str);
+</code></pre>
+
+<hr />
+
+<h2>对象保护</h2>
+
+<p>ES5中定义了一些方法可以让对象不可扩展，密封对象，冻结对象。这些方法旨在保护对象。分别是 <code>Object.preventExtensions(myObject)</code> , <code>Object.seal(myObject)</code>, <code>Object.freeze(myObject)</code></p>
+
+<h3>禁用扩展</h3>
+
+<p>使用 <code>Object.preventExtensions()</code> 方法可以让给定的对象不再可以扩展, 也就是不能够再添加新的属性，包括不能在原型上添加属性。</p>
+
+<p>使用这个方法禁用扩展后的对象在严格模式中可能会抛出TypeError错误。</p>
+
+<p>可以扩展对象可以变得不可扩展，但是反过来不行。</p>
+
+<p>可以使用 <code>Object.isExtensible()</code> 方法检测对象是否可扩展。</p>
+
+<h3>密封对象</h3>
+
+<p>使用 <code>Object.seal()</code> 方法可以密封一个对象并返回密封后的对象。密封后的对象不能添加属性，撒谎年初属性，修改属性的可枚举，可写性，可配置性。 但可能可以修改已有属性的值。</p>
+
+<p>可以使用 <code>Object.isSealed()</code> 方法检测对象是否可扩展</p>
+
+<h3>冻结对象</h3>
+
+<p>使用 <code>Object.freeze()</code> 方法冻结对象并返回冻结后的对象。冻结后的对象永远不可变。</p>
+
+<p><code>Object.isFrozen(obj)</code> 判断一个对象是否被冻结。</p>
+
+<hr />
+
+<h2>对象相关的一些模式</h2>
+
+<h3>命名空间模式</h3>
+
+<p>可以使用对象字面量的来维护代码，这样可以减少全局变量的数量。</p>
+
+<pre><code>if(typeof module === 'undefined') {
+    var module = {};
+}
+</code></pre>
+
+<p>创建一个全局唯一的变量，将这个变量作为一系列代码的容器。然后在容器中添加不同的功能：</p>
+
+<pre><code>module.getId = function(id) {
+
+    return document.getElementById(id);
+
+};
+
+
+
+module.NAME = 'MyApp';
+
+module.assets = {
+
+    js: {
+
+        jQuery: '/static/jquery/jquery-2.0.3.min.js'
+
+    },
+
+    css: {
+
+        common: '/static/css/common.css'
+
+    }
+
+};
+</code></pre>
+
+<p>将不同的代码组织在对象中可以有效的减少命名冲突。但是过渡的使用也容易引起引用问题，比如</p>
+
+<pre><code>moduleA.modA.modB.modC.methodA();
+</code></pre>
+</body>
+</html>
