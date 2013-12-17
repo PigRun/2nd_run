@@ -61,7 +61,7 @@
   }
     // 监听表单事件
   document.getElementById('files1').addEventListener('change', handleFileSelect, false);
-</script><div class="se-section-delimiter"></div>
+</script>
 
 <h3 id="使用拖拽方式获取文件">使用拖拽方式获取文件</h3>
 
@@ -90,6 +90,44 @@
 <li>dataTransfer.setDragImage(element, x, y)：制定拖拽元素时跟随鼠标移动的图片，x、y分别是相对于鼠标的坐标(据测试，Chrome暂不支持)</li>
 <li>dataTransfer.addElement(element)：添加一起跟随拖拽的元素，如果你想让某个元素跟随被拖拽元素一同被拖拽，则使用此方法(据测试，Chrome暂不支持)</li>
 </ul>
+
+<h4 id="小拖拽demo">小拖拽DEMO</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> allowDrop</span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> drag</span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">dataTransfer</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">(</span><span class="str">"Text"</span><span class="pun">,</span><span class="pln">ev</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">id</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> drop</span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> data</span><span class="pun">=</span><span class="pln">ev</span><span class="pun">.</span><span class="pln">dataTransfer</span><span class="pun">.</span><span class="pln">getData</span><span class="pun">(</span><span class="str">"Text"</span><span class="pun">);</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="pln">data</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="tag">&lt;/script&gt;</span><span class="pln">
+</span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"div1"</span><span class="pln"> </span><span class="atn">ondrop</span><span class="pun">=</span><span class="atv">"</span><span class="pln">drop</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span><span class="atv">"</span><span class="pln"> </span><span class="atn">ondragover</span><span class="pun">=</span><span class="atv">"</span><span class="pln">allowDrop</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span><span class="pln">
+</span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"drag1"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"img_logo.gif"</span><span class="pln"> </span><span class="atn">draggable</span><span class="pun">=</span><span class="atv">"true"</span><span class="pln"> </span><span class="atn">ondragstart</span><span class="pun">=</span><span class="atv">"</span><span class="pln">drag</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span><span class="atv">"</span><span class="pln"> </span><span class="atn">width</span><span class="pun">=</span><span class="atv">"336"</span><span class="pln"> </span><span class="atn">height</span><span class="pun">=</span><span class="atv">"69"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></pre>
+
+<script type="text/javascript">
+function allowDrop(ev){
+    ev.preventDefault();
+}
+function drag(ev){
+    ev.dataTransfer.setData("Text",ev.target.id);
+}
+function drop(ev){
+    ev.preventDefault();
+    var data=ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="height:300px;width=300px; background-color: #ccc; margin-bottom: 20px;"></div>
+
+<p><img id="drag1" src="http://www.w3school.com.cn/i/w3school_banner.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"></p>
+
+<h4 id="拖拽读取文件">拖拽读取文件</h4>
 
 <pre class="prettyprint prettyprinted" style=""><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"drop_zone"</span><span class="tag">&gt;</span><span class="pln">Drop files here</span><span class="tag">&lt;/div&gt;</span><span class="pln">
 </span><span class="tag">&lt;output</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"list"</span><span class="tag">&gt;&lt;/output&gt;</span><span class="pln">
@@ -162,7 +200,7 @@
   // 监听拖拽事件
   dropZone.addEventListener('dragover', handleDragOver, false);
   dropZone.addEventListener('drop', handleFileSelect, false);
-</script><div class="se-section-delimiter"></div>
+</script>
 
 <h1 id="读取文件">读取文件</h1>
 
