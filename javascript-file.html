@@ -1,4 +1,12 @@
-<h1 id="file-api">File API</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>javascript-file</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://stackedit.io/libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="file-api">File API</h1>
 
 <p>File API的三个重要方法 <em>window.File</em>, <em>window.FileReader</em>, <em>window.FileList</em></p>
 
@@ -6,15 +14,15 @@
     </span><span class="com">// Code</span><span class="pln">
 </span><span class="pun">}</span></code></pre>
 
-<h2 id="获取文件">获取文件</h2><div class="se-section-delimiter"></div>
+<h2 id="获取文件">获取文件</h2>
 
 <h3 id="通过表单获取本地文件">通过表单，获取本地文件</h3>
 
-<p>要加载文件，最直接的方法就是使用标准<code>&lt;input type="file"&gt;</code>元素。JavaScript 会返回选定的 File 对象的列表作为 FileList。</p><div class="se-section-delimiter"></div>
+<p>要加载文件，最直接的方法就是使用标准<code>&lt;input type="file"&gt;</code>元素。JavaScript 会返回选定的 File 对象的列表作为 FileList。</p>
 
 <pre class="prettyprint prettyprinted" style=""><code><span class="com">&lt;!-- 准备一个表单用来读取文件 --&gt;</span><span class="pln">
-</span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"files"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"files[]"</span><span class="pln"> </span><span class="atn">multiple</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
-</span><span class="tag">&lt;output</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"list"</span><span class="tag">&gt;&lt;/output&gt;</span><span class="pln">
+</span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"files1"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"files[]"</span><span class="pln"> </span><span class="atn">multiple</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;output</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"list1"</span><span class="tag">&gt;&lt;/output&gt;</span><span class="pln">
 
 </span><span class="tag">&lt;script&gt;</span><span class="pln">
   </span><span class="kwd">function</span><span class="pln"> handleFileSelect</span><span class="pun">(</span><span class="pln">evt</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
@@ -23,10 +31,10 @@
     </span><span class="com">// files is a FileList of File objects. List some properties.</span><span class="pln">
     </span><span class="kwd">var</span><span class="pln"> output </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span><span class="pln">
     </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> f</span><span class="pun">;</span><span class="pln"> f </span><span class="pun">=</span><span class="pln"> files</span><span class="pun">[</span><span class="pln">i</span><span class="pun">];</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-      </span><span class="kwd">var</span><span class="pln"> str </span><span class="pun">=</span><span class="pln"> </span><span class="str">"'&lt;li&gt;&lt;strong&gt;', escape(f.name), "</span><span class="pln"> </span><span class="pun">+</span><span class="pln">
-                </span><span class="str">"'&lt;/strong&gt; (', f.type || 'n/a', ') - ',"</span><span class="pln"> </span><span class="pun">+</span><span class="pln">
-                </span><span class="str">"f.size, ' bytes, last modified: ',"</span><span class="pln"> </span><span class="pun">+</span><span class="pln">
-                </span><span class="str">"f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;'"</span><span class="pun">;</span><span class="pln">
+      </span><span class="kwd">var</span><span class="pln"> str </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;li&gt;&lt;strong&gt;'</span><span class="pun">+</span><span class="pln"> escape</span><span class="pun">(</span><span class="pln">f</span><span class="pun">.</span><span class="pln">name</span><span class="pun">)</span><span class="pln">
+              </span><span class="pun">+</span><span class="pln"> </span><span class="str">'&lt;/strong&gt;'</span><span class="pun">+(</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">type </span><span class="pun">||</span><span class="pln"> </span><span class="str">'n/a'</span><span class="pln"> </span><span class="pun">)+</span><span class="str">' - '</span><span class="pln">
+              </span><span class="pun">+</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">size </span><span class="pun">+</span><span class="str">' bytes, last modified: '</span><span class="pln">
+              </span><span class="pun">+</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">lastModifiedDate</span><span class="pun">.</span><span class="pln">toLocaleDateString</span><span class="pun">()+</span><span class="pln"> </span><span class="str">'&lt;/li&gt;'</span><span class="pun">;</span><span class="pln">
 
       output</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln">str</span><span class="pun">);</span><span class="pln">
 
@@ -40,7 +48,7 @@
 <p><strong>例子：</strong>使用表单进行读入文件。</p>
 
 <p><input type="file" id="files1" name="files[]" multiple="">
-<output id="list"></output></p>
+<output id="list1"></output></p>
 
 <script>
   function handleFileSelect(evt) {
@@ -49,19 +57,19 @@
     // files is a FileList of File objects. List some properties.
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
-      var str = + "'<li><strong>', escape(f.name), "
-                + "'</strong> (', f.type || 'n/a', ') - ',"
-                + "f.size, ' bytes, last modified: ',"
-                + "f.lastModifiedDate.toLocaleDateString(), '</li>'";
+      var str = '<li><strong>'+ escape(f.name)
+              + '</strong>'+( f.type || 'n/a' )+' - '
+              + f.size +' bytes, last modified: '
+              + f.lastModifiedDate.toLocaleDateString()+ '</li>';
 
       output.push(str);
 
     }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+    document.getElementById('list1').innerHTML = '<ul>' + output.join('') + '</ul>';
   }
     // 监听表单事件
   document.getElementById('files1').addEventListener('change', handleFileSelect, false);
-</script><div class="se-section-delimiter"></div>
+</script>
 
 <h3 id="使用拖拽方式获取文件">使用拖拽方式获取文件</h3>
 
@@ -89,7 +97,45 @@
 <li>dataTransfer.files：如果是拖拽文件，则返回正在拖拽的文件列表FileList</li>
 <li>dataTransfer.setDragImage(element, x, y)：制定拖拽元素时跟随鼠标移动的图片，x、y分别是相对于鼠标的坐标(据测试，Chrome暂不支持)</li>
 <li>dataTransfer.addElement(element)：添加一起跟随拖拽的元素，如果你想让某个元素跟随被拖拽元素一同被拖拽，则使用此方法(据测试，Chrome暂不支持)</li>
-</ul><div class="se-section-delimiter"></div>
+</ul>
+
+<h4 id="小拖拽demo">小拖拽DEMO</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> allowDrop</span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> drag</span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">dataTransfer</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">(</span><span class="str">"Text"</span><span class="pun">,</span><span class="pln">ev</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">id</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> drop</span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> data</span><span class="pun">=</span><span class="pln">ev</span><span class="pun">.</span><span class="pln">dataTransfer</span><span class="pun">.</span><span class="pln">getData</span><span class="pun">(</span><span class="str">"Text"</span><span class="pun">);</span><span class="pln">
+    ev</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="pln">data</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="tag">&lt;/script&gt;</span><span class="pln">
+</span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"div1"</span><span class="pln"> </span><span class="atn">ondrop</span><span class="pun">=</span><span class="atv">"</span><span class="pln">drop</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span><span class="atv">"</span><span class="pln"> </span><span class="atn">ondragover</span><span class="pun">=</span><span class="atv">"</span><span class="pln">allowDrop</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span><span class="pln">
+</span><span class="tag">&lt;img</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"drag1"</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"img_logo.gif"</span><span class="pln"> </span><span class="atn">draggable</span><span class="pun">=</span><span class="atv">"true"</span><span class="pln"> </span><span class="atn">ondragstart</span><span class="pun">=</span><span class="atv">"</span><span class="pln">drag</span><span class="pun">(</span><span class="pln">event</span><span class="pun">)</span><span class="atv">"</span><span class="pln"> </span><span class="atn">width</span><span class="pun">=</span><span class="atv">"336"</span><span class="pln"> </span><span class="atn">height</span><span class="pun">=</span><span class="atv">"69"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></pre>
+
+<script type="text/javascript">
+function allowDrop(ev){
+    ev.preventDefault();
+}
+function drag(ev){
+    ev.dataTransfer.setData("Text",ev.target.id);
+}
+function drop(ev){
+    ev.preventDefault();
+    var data=ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="height:300px;width=300px; background-color: #ccc; margin-bottom: 20px;"></div>
+
+<p><img id="drag1" src="http://www.w3school.com.cn/i/w3school_banner.gif" draggable="true" ondragstart="drag(event)" width="336" height="69"></p>
+
+<h4 id="拖拽读取文件">拖拽读取文件</h4>
 
 <pre class="prettyprint prettyprinted" style=""><code><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"drop_zone"</span><span class="tag">&gt;</span><span class="pln">Drop files here</span><span class="tag">&lt;/div&gt;</span><span class="pln">
 </span><span class="tag">&lt;output</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"list"</span><span class="tag">&gt;&lt;/output&gt;</span><span class="pln">
@@ -104,10 +150,10 @@
     </span><span class="com">// files is a FileList of File objects. List some properties.</span><span class="pln">
     </span><span class="kwd">var</span><span class="pln"> output </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span><span class="pln">
     </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> f</span><span class="pun">;</span><span class="pln"> f </span><span class="pun">=</span><span class="pln"> files</span><span class="pun">[</span><span class="pln">i</span><span class="pun">];</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
-      </span><span class="kwd">var</span><span class="pln"> str </span><span class="pun">=</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"'&lt;li&gt;&lt;strong&gt;', escape(f.name), "</span><span class="pln">
-                </span><span class="pun">+</span><span class="pln"> </span><span class="str">"'&lt;/strong&gt; (', f.type || 'n/a', ') - ',"</span><span class="pln">
-                </span><span class="pun">+</span><span class="pln"> </span><span class="str">"f.size, ' bytes, last modified: ',"</span><span class="pln">
-                </span><span class="pun">+</span><span class="pln"> </span><span class="str">"f.lastModifiedDate.toLocaleDateString(), '&lt;/li&gt;'"</span><span class="pun">;</span><span class="pln">
+      </span><span class="kwd">var</span><span class="pln"> str </span><span class="pun">=</span><span class="pln"> </span><span class="str">'&lt;li&gt;&lt;strong&gt;'</span><span class="pun">+</span><span class="pln"> escape</span><span class="pun">(</span><span class="pln">f</span><span class="pun">.</span><span class="pln">name</span><span class="pun">)</span><span class="pln">
+              </span><span class="pun">+</span><span class="pln"> </span><span class="str">'&lt;/strong&gt;'</span><span class="pun">+(</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">type </span><span class="pun">||</span><span class="pln"> </span><span class="str">'n/a'</span><span class="pln"> </span><span class="pun">)+</span><span class="str">' - '</span><span class="pln">
+              </span><span class="pun">+</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">size </span><span class="pun">+</span><span class="str">' bytes, last modified: '</span><span class="pln">
+              </span><span class="pun">+</span><span class="pln"> f</span><span class="pun">.</span><span class="pln">lastModifiedDate</span><span class="pun">.</span><span class="pln">toLocaleDateString</span><span class="pun">()+</span><span class="pln"> </span><span class="str">'&lt;/li&gt;'</span><span class="pun">;</span><span class="pln">
 
       output</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln">str</span><span class="pun">);</span><span class="pln">
     </span><span class="pun">}</span><span class="pln">
@@ -141,10 +187,10 @@
     // files is a FileList of File objects. List some properties.
     var output = [];
     for (var i = 0, f; f = files[i]; i++) {
-      var str = + "'<li><strong>', escape(f.name), "
-                + "'</strong> (', f.type || 'n/a', ') - ',"
-                + "f.size, ' bytes, last modified: ',"
-                + "f.lastModifiedDate.toLocaleDateString(), '</li>'";
+      var str = '<li><strong>'+ escape(f.name)
+              + '</strong>'+( f.type || 'n/a' )+' - '
+              + f.size +' bytes, last modified: '
+              + f.lastModifiedDate.toLocaleDateString()+ '</li>';
 
       output.push(str);
     }
@@ -162,7 +208,7 @@
   // 监听拖拽事件
   dropZone.addEventListener('dragover', handleDragOver, false);
   dropZone.addEventListener('drop', handleFileSelect, false);
-</script><div class="se-section-delimiter"></div>
+</script>
 
 <h1 id="读取文件">读取文件</h1>
 
@@ -176,7 +222,7 @@
 <li>FileReader.readAsDataURL(Blob|File) - result 属性将包含编码为数据网址的 file/blob 数据。</li>
 <li>FileReader.readAsArrayBuffer(Blob|File) - result 属性将包含 ArrayBuffer 对象形式的 file/blob 数据。
 对您的 FileReader 对象调用其中某一种读取方法后，可使用 onloadstart、onprogress、onload、onabort、onerror 和 onloadend 跟踪其进度。</li>
-</ul><div class="se-section-delimiter"></div>
+</ul>
 
 <h2 id="读取本地图片生成缩略图">读取本地图片，生成缩略图</h2>
 
@@ -188,8 +234,8 @@
   </span><span class="pun">}</span><span class="pln">
 </span><span class="tag">&lt;/style&gt;</span><span class="pln">
 
-</span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"files"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"files[]"</span><span class="pln"> </span><span class="atn">multiple</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
-</span><span class="tag">&lt;output</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"list"</span><span class="tag">&gt;&lt;/output&gt;</span><span class="pln">
+</span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"file"</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"files2"</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"files[]"</span><span class="pln"> </span><span class="atn">multiple</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+</span><span class="tag">&lt;output</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"list2"</span><span class="tag">&gt;&lt;/output&gt;</span><span class="pln">
 
 </span><span class="tag">&lt;script&gt;</span><span class="pln">
   </span><span class="kwd">function</span><span class="pln"> handleFileSelect</span><span class="pun">(</span><span class="pln">evt</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
@@ -212,7 +258,7 @@
           </span><span class="kwd">var</span><span class="pln"> span </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">'span'</span><span class="pun">);</span><span class="pln">
           span</span><span class="pun">.</span><span class="pln">innerHTML </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="str">'&lt;img class="thumb" src="'</span><span class="pun">,</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">target</span><span class="pun">.</span><span class="pln">result</span><span class="pun">,</span><span class="pln">
                             </span><span class="str">'" title="'</span><span class="pun">,</span><span class="pln"> escape</span><span class="pun">(</span><span class="pln">theFile</span><span class="pun">.</span><span class="pln">name</span><span class="pun">),</span><span class="pln"> </span><span class="str">'"/&gt;'</span><span class="pun">].</span><span class="pln">join</span><span class="pun">(</span><span class="str">''</span><span class="pun">);</span><span class="pln">
-          document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'list'</span><span class="pun">).</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">span</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
+          document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'list2'</span><span class="pun">).</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">span</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">);</span><span class="pln">
         </span><span class="pun">};</span><span class="pln">
       </span><span class="pun">})(</span><span class="pln">f</span><span class="pun">);</span><span class="pln">
 
@@ -221,7 +267,7 @@
     </span><span class="pun">}</span><span class="pln">
   </span><span class="pun">}</span><span class="pln">
 
-  document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'files'</span><span class="pun">).</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'change'</span><span class="pun">,</span><span class="pln"> handleFileSelect</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span><span class="pln">
+  document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'files2'</span><span class="pun">).</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'change'</span><span class="pun">,</span><span class="pln"> handleFileSelect</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span><span class="pln">
 </span><span class="tag">&lt;/script&gt;</span></code></pre>
 
 <p><style>
@@ -233,7 +279,7 @@
 </style></p>
 
 <p><input type="file" id="files2" name="files[]" multiple="">
-<output id="list"></output></p>
+<output id="list2"></output></p>
 
 <script>
   function handleFileSelect(evt) {
@@ -256,7 +302,7 @@
           var span = document.createElement('span');
           span.innerHTML = ['<img class="thumb" src="', e.target.result,
                             '" title="', escape(theFile.name), '"/>'].join('');
-          document.getElementById('list').insertBefore(span, null);
+          document.getElementById('list2').insertBefore(span, null);
         };
       })(f);
 
@@ -266,4 +312,5 @@
   }
 
   document.getElementById('files2').addEventListener('change', handleFileSelect, false);
-</script>
+</script></div></body>
+</html>
