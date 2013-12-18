@@ -154,3 +154,21 @@ AJAX 可用来与数据库进行动态通信。
 http://echo.113.im/?data={%22test%22:1}
 
 http://echo.113.im/?data={%22test%22:1}&timeout=3000
+
+http://jsbin.com/
+```
+var xhr = new XMLHttpRequest();
+
+
+xhr.onreadystatechange=function()
+  {
+  if (xhr.readyState==4 && xhr.status==200)
+    {
+    document.getElementById("myDiv").innerHTML=xhr.responseText;
+    }
+  }
+xhr.open("GET","http://echo.113.im/?data=10000&timeout=3000",true);
+
+xhr.send()
+```
+
