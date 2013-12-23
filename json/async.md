@@ -117,7 +117,7 @@ f1().then(f2).fail(f3);
 
 #3.具体一点介绍promise?
 
- ##3.1 首先看怎么实现一个promise
+##3.1 首先看怎么实现一个promise
 ```
  var promptDeferred = new $.Deferred(); 
  promptDeferred.always(function(){ console.log('A choice was made:'); }); 
