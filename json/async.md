@@ -2,7 +2,7 @@
 
  1.1 什么是线程
 
- img1
+  ![线程](https://github.com/PigRun/2nd_run/blob/master/json/img/bg2012122102.png?raw=true)
 
  1.2 异步用来解决什么问题?
 
@@ -146,16 +146,9 @@ f1().then(f2).fail(f3);
  1.5版本以前的jQuery用的回调函数功能很弱,由此有了deerred对象
 
  等等等等...不是在说Promise吗? 怎么扯到deferred对象了? 看下面的图
- 
-```
-    -----------------------------------------------
-    -                deferred                     -
-    -         -------------------------------     -
-    -         -      promise                -     -
-    -         -                             -     -
-    -         -------------------------------     -
-    -----------------------------------------------
-```
+
+ ![deferred promise](https://github.com/PigRun/2nd_run/blob/master/json/img/dp.png?raw=true)
+
  这就是deferred和promise的关系
 
  下面是我们传统的jQuery ajax的写法
