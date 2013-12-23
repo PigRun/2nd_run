@@ -1,19 +1,17 @@
 #1. 异步简介
 
- ##1.1 什么是线程
+##1.1 什么是线程
+![线程](https://github.com/PigRun/2nd_run/blob/master/json/img/bg2012122102.png?raw=true)
 
-  ![线程](https://github.com/PigRun/2nd_run/blob/master/json/img/bg2012122102.png?raw=true)
+##1.2 异步用来解决什么问题?
 
- ##1.2 异步用来解决什么问题?
+##1.3 异步带来的新的难点
 
- ##1.3 异步带来的新的难点
-
- ##1.4 如何解决?
-
+##1.4 如何解决?
 
 #2. 执行异步的方法
 
- ##2.1 回调函数
+##2.1 回调函数
 
  假设我们有一个f1函数,一个f2函数,f2函数等待f1函数执行的结果.
 
@@ -36,7 +34,7 @@
 
  最重要的是,他很难看.
 
- ##2.2 事件监听
+##2.2 事件监听
 
  采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。(采用jQuery写法)
 ```
@@ -62,7 +60,7 @@ console.log(this.id + ' meowed');
 $('#tabby').trigger('meow'); // "tabby meowed" 
 $('#socks').trigger('meow'); // "socks meowed" 
 ```
- ##2.3 发布/订阅
+##2.3 发布/订阅
 
  "发布/订阅模式" 又叫 "观察者模式";
  这里在事件监听的基础上多了一个"信号中心"的概念
@@ -83,7 +81,7 @@ $('#socks').trigger('meow'); // "socks meowed"
 
  改良的点在于 因为我们可以通过查看"消息中心"，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
 
- ##2.4 Promises对象
+##2.4 Promises对象
 
  [Promises对象](http://wiki.commonjs.org/wiki/Promises/A)是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。
 
@@ -117,7 +115,7 @@ f1().then(f2).fail(f3);
  而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。
  这种方法的缺点就是编写和理解，都相对比较难。
 
- #3.具体一点介绍promise?
+#3.具体一点介绍promise?
 
  ##3.1 首先看怎么实现一个promise
 ```
@@ -141,7 +139,7 @@ f1().then(f2).fail(f3);
  prompt.done(function(){ console.log('Starting game...'); });
  prompt.fail(function(){ console.log('No game today.'); });
 ```
- ##3.2 jQuery中的Promise
+##3.2 jQuery中的Promise
  
  1.5版本以前的jQuery用的回调函数功能很弱,由此有了deerred对象
 
@@ -188,7 +186,7 @@ f1().then(f2).fail(f3);
 　　.fail(function(){ alert("出错啦！"); });
 ```
 
- ##3.3 如何把一个函数改造成promise/deffered函数
+##3.3 如何把一个函数改造成promise/deffered函数
 ```
    var getLocation = function( callback ){
 
@@ -218,7 +216,7 @@ f1().then(f2).fail(f3);
  getLocation().then(drawMarkerOnMap);
 ```
 
- ##3.4 promise/A规范
+##3.4 promise/A规范
  deferred对象遵从promise/A的规范:
 
  三种执行状态----未完成(等待 -> progress)，已完成(resolved -> done)和已失败(fail)
@@ -291,9 +289,9 @@ f1().then(f2).fail(f3);
 ```
 `always = fail || done;`
  
- ##3.5 补充
+##3.5 补充
 
- ###3.5.1 jQuery与promise/A
+###3.5.1 jQuery与promise/A
 
  promise中规定成功为fulfill,而jQuery实现出来是resolve.
 
@@ -306,14 +304,14 @@ f1().then(f2).fail(f3);
  两种方式不能混用.
  除非你用Q.js(Q.js中有处理好Promise/A规范生成的Promise对象与jQuery生成的Promise对象不同的兼容)
 
- ###3.5.2 jQuery中多次调用同一个对象返回的promise其实是同一个
+###3.5.2 jQuery中多次调用同一个对象返回的promise其实是同一个
 ```
  var promise1 = promptDeferred.promise();
  var promise2 = promptDeferred.promise();
  console.log(promise1 === promise2); //true
 ```
 
- ###3.5.3 异步中还有其他诸如wind.js的非主流方法,待研究
+###3.5.3 异步中还有其他诸如wind.js的非主流方法,待研究
 
 
 
