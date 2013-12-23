@@ -174,7 +174,6 @@ f1().then(f2).fail(f3);
  1. 变帅了
  2. 变帅了
  3. 允许你自由添加多个回调函数。
-
 ```
  /*多个回调*/
  $.ajax("test.html")
@@ -182,50 +181,47 @@ f1().then(f2).fail(f3);
 　　.fail(function(){ alert("出错啦！"); });
  .done(function(){ alert("哈哈，成功了！"); })
 ```
-
-
-$.when函数的用法:
+ $.when函数的用法:
 ```
  $.when($.ajax("test1.html"), $.ajax("test2.html"))
 　　.done(function(){ alert("哈哈，成功了！"); })
 　　.fail(function(){ alert("出错啦！"); });
 ```
-如何把一个函数改造成promise/deffered函数
+
+ 如何把一个函数改造成promise/deffered函数
 ```
- var getLocation = function( callback ){
+   var getLocation = function( callback ){
 
-     navigator.geolocation.getCurrentPosition( callback || function( position ){
+       navigator.geolocation.getCurrentPosition( callback || function( position ){
 
-         // Stuff with geolocation
+           // Stuff with geolocation
 
-     });
+       });
 
- };
+   };
 ```
+改造成promise/deffered之后:
 ```
  var getLocation = function() {
-     var deferred = new $.Deferred();
+       var deferred = new $.Deferred();
 
-     navigator.geolocation.getCurrentPosition(function( position ){
-         // geolocation 要做的事情!!
+       navigator.geolocation.getCurrentPosition(function( position ){
+           // geolocation 要做的事情!!
 
-         //把deferred的状态设置为完成
-         deferred.resolve(position);
-     });
+           //把deferred的状态设置为完成
+           deferred.resolve(position);
+       });
 
-     // 返回promise对象,这样这个函数的reject和fail回调就不会执行了
-     return deferred.promise();
- };
-
-
+       // 返回promise对象,这样这个函数的reject和fail回调就不会执行了
+       return deferred.promise();
+   };
  getLocation().then(drawMarkerOnMap);
 ```
-deferred对象遵从promise/A的规范:
+ deferred对象遵从promise/A的规范:
 
  三种执行状态----未完成(等待 -> progress)，已完成(resolved -> done)和已失败(fail)
 
-jQuery的deferred对象就是把回调函数接口拓展到所有操作的对象,不仅ajax,也不管是异步函数还是同步函数,都可以使用这个对象的方法来指定回调函数
-
+ jQuery的deferred对象就是把回调函数接口拓展到所有操作的对象,不仅ajax,也不管是异步函数还是同步函数,都可以使用这个对象的方法来指定回调函数
 ```
  /*假设有一个很耗时的操作*/
  var wait = function(){
@@ -236,13 +232,13 @@ jQuery的deferred对象就是把回调函数接口拓展到所有操作的对象
  }
 ```
 
-我们希望给他指定回调函数,那么就应该是这样写:
+ 我们希望给他指定回调函数,那么就应该是这样写:
 ```
  $.when(wait())
 　　.done(function(){ alert("哈哈，成功了！"); })
 　　.fail(function(){ alert("出错啦！"); });
 ```
-但是这段代码是不对的,因为wait返回的不是deferred对象,所以jQuery的done方法会立即执行,所以要改写wait:
+ 但是这段代码是不对的,因为wait返回的不是deferred对象,所以jQuery的done方法会立即执行,所以要改写wait:
 ```
  var dtd = $.Deferred(); // 新建一个deferred对象
 　　var wait = function(dtd){
@@ -259,42 +255,38 @@ jQuery的deferred对象就是把回调函数接口拓展到所有操作的对象
 　　.fail(function(){ alert("出错啦！"); });
 ```
 
-但是像上面这样子写, 只要我在代码最后加上一行 `dtd.resolve()` 整个状态就改变了,不会再等wait函数执行完 deferred函数就执行了.
+ 但是像上面这样子写, 只要我在代码最后加上一行 `dtd.resolve()` 整个状态就改变了,不会再等wait函数执行完 deferred函数就执行了.
 
-所以jQuery提供了deferred.promise() 如果我们在函数里面用这个方法返回了另一个deferred对象,这个对象只开放与执行状态无关的比如done和fail方法,而像resolve方法和reject方法这种会改变运行状态的,就没有开放.
-
+ 所以jQuery提供了deferred.promise() 如果我们在函数里面用这个方法返回了另一个deferred对象,这个对象只开放与执行状态无关的比如done和fail方法,而像resolve方法和reject方法这种会改变运行状态的,就没有开放.  
 ```
-    var wait = function(dtd){
-    var dtd = $.Deferred();// 新建一个Deferred对象
-　　　　var tasks = function(){
-　　　　　　alert("执行完毕！");
-　　　　　　dtd.resolve(); // 改变Deferred对象的执行状态
-　　　　};
+ var wait = function(dtd){
+ var dtd = $.Deferred();// 新建一个Deferred对象
+  var tasks = function(){
+   alert("执行完毕！");
+   dtd.resolve(); // 改变Deferred对象的执行状态
+  };
 
-　　　　setTimeout(tasks,5000);
-　　　　return dtd.promise(); // 返回promise对象
-　　};
-　　$.when(wait())
-　　.done(function(){ alert("哈哈，成功了！"); })
-　　.fail(function(){ alert("出错啦！"); });
-　　d.resolve(); // 此时，这个语句是无效的
+  setTimeout(tasks,5000);
+  return dtd.promise(); // 返回promise对象
+ };
+  $.when(wait())
+  .done(function(){ alert("哈哈，成功了！"); })
+  .fail(function(){ alert("出错啦！"); });
+  d.resolve(); // 此时，这个语句是无效的
 ```
-jQuery会默认把新的deferred对象最为参数传入when的参数中,而此时when的参数应该是一个函数名,所以上面的程序还可以这样写:
+ jQuery会默认把新的deferred对象最为参数传入when的参数中,而此时when的参数应该是一个函数名,所以上面的程序还可以这样写:
 ```
 　　$.when(wait)
 　　.done(function(){ alert("哈哈，成功了！"); })
 　　.fail(function(){ alert("出错啦！"); });
 　　d.resolve(); // 此时，这个语句是无效的
 ```
-
-
 `then = fail + done;`
 ```
  $.when(wait)
 　　.then(function(){ alert("哈哈，成功了！"); },function(){ alert("出错啦！"); });
 　　.then(function(){ alert("哈哈，成功了！"); });
 ```
-
 `always = fail || done;`
 
 
