@@ -176,6 +176,7 @@ var o = Object.create(Object.prototype);
 // 访问继承属性和方法
 o.toString(); // '[object Object]'
 o.constructor; // function Object() { /*[native code]*/ }
+```
 
 ## 使用对象
 
