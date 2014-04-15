@@ -6,6 +6,7 @@ JavaScript操作文件，有三个重要的API
 * window.File
 * window.FileReader
  
+
 ```javascript
 if(window.File && window.FileReader && window.FIleList && window.Blob){
     // Code
@@ -70,6 +71,36 @@ event.target.files[]数组里面的每一个元素，就是一个window.File对�
 
 #### event.dataTransfer 相关方法 ####
 
+* 属性
+  * dropEffect 控制用户在 dragenter 和 dragover 事件期间收到的反馈
+  * effectAllowed 限制用户可在元素上执行的“拖动类型”
+  * files
+  * types
+  * setDragImage 自定义拖动图标
+* 方法
+  * addElement() 
+  * clearData() 
+  * getDate() 以 MIME 类型获取拖动数据
+  * setData() 将对象内容设置成 MIME 类型，并将数据有效负载作为参数传递
+* 事件
+  * dragstart
+  * drag
+  * dragenter
+  * dragleave
+  * dragover
+  * drop
+  * dragend
+
+使用拖拽，需要理清以下概念：
+
+* 源元素 拖动的起源点
+* 数据有效负载 我们尝试拖放的内容
+* 目标 接纳拖放内容的区域
+
+源元素可以是图片、列表、链接、文件对象、HTML内容等。目标是接纳用户尝试放置的数据的放置区（或放置区组）。并非所有元素都可以作为目标（例如图片）。
+
+我们通过监听目标的拖拽事件，可以获取到正在拖拽内容的有效载荷。
+
 #### 拖拽演示 ####
 
 ```html
@@ -133,7 +164,7 @@ event.target.files[]数组里面的每一个元素，就是一个window.File对�
   * EMPTY 还没有加载任何数据
   * LOADING 数据正在被加载
   * DONE 已完成全部的读取请求
-* Event handlers
+* 事件
   * onabort 当读取操作被终止时调用
   * onerror 当读取操作发生错误时调用
   * onload 当读取操作成功完成时调用
